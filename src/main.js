@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 // 引入基准样式
-import './assets/base.scss'
+import './assets/styles/base.scss'
 
 Vue.config.productionTip = false
 
