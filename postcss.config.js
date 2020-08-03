@@ -1,14 +1,14 @@
 module.exports = {
   plugins: {
     autoprefixer: {
-      //不需要设置这个选项，它会自动去使用 .browserslistrc 这个文件的配置项
+      // 不需要设置这个选项，它会自动去使用 .browserslistrc 这个文件的配置项
       // browsers: ['Android >= 4.0', 'iOS >= 8'],
     },
     'postcss-pxtorem': {
-      //转换的基准值  1rem = 37.5px
+      // 转换的基准值  1rem = 37.5px
       // x rem = 44px
       rootValue: 37.5,
-      propList: ['*'],
-    },
-  },
-};
+      propList: ['*']
+    }
+  }
+}
