@@ -93,3 +93,52 @@ app.listen(9090, () => {
 
 [Vue-cli 参考文档](https://cli.vuejs.org/zh/config/#devserver)
 
+```javascript
+//vue.config.js
+// 项目的配置文件
+module.exports = {
+  devServer: {
+    proxy: {
+      // key: value
+      // key 是前缀
+      // value 是跟 http-proxy-middleware 相同的一个配置
+      '/migu': {
+        // 目标地址
+        target: 'http://movie.miguvideo.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/migu': ''
+        }
+      },
+      '/api': {
+        target: 'https://mhd.zhuishushenqi.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
+  }
+}
+```
+
+## 3. 接口统一处理
+
+### <1> 确定网络请求工具选择什么？
+
+> axios
+
+### <2>安装axios
+
+```bash
+$ npm install axios -D
+```
+
+### <3> 对axios 做一个二次封装 [axios文档](https://www.kancloud.cn/yunye/axios/234845)
+
+> 创建 src/utils/request.js
+
+#### <4> 创建src/api 文件夹
+
+> 将要调用的接口按照模块去拆分成一个一个的js文件，然后统一放置在 src/api 目录下
+

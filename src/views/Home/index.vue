@@ -12,22 +12,10 @@
         <div class="header-search"></div>
       </a>
     </header>
-    <Swiper class = 'my-swiper' :autoplay="2000" @change="onChange">
-      <SwiperItem>
+    <Swiper class = 'my-swiper' :autoplay="2000" @change="onChange" v-if = "bannerList.length > 0">
+      <SwiperItem v-for = "item in bannerList" :key = "item.id">
         <img
-          src="https://img.manhuadao.cn/upload/AdGroup201906/9315f7dd68b346928219f29bd9c89e60.jpg"
-          alt
-        />
-      </SwiperItem>
-      <SwiperItem>
-        <img
-          src="https://img.manhuadao.cn/upload/AdGroup201903/22b43c03a0f943cda001c5338fe0ddd9.jpg"
-          alt
-        />
-      </SwiperItem>
-      <SwiperItem>
-        <img
-          src="https://img.manhuadao.cn/upload/AdGroup202003/dda50e4233e34186910fd490aea1cd91.jpg"
+          :src="item.imageurl"
           alt
         />
       </SwiperItem>
@@ -37,6 +25,7 @@
 
 <script>
 import { Swiper, SwiperItem } from '@/components/Swiper'
+import { getBanner } from '@/api/cartoon'
 
 export default {
   name: 'Home',
@@ -44,19 +33,30 @@ export default {
     Swiper,
     SwiperItem
   },
+  data () {
+    return {
+      // 需要一个数据，考虑哪些点
+      // 1. 数据放在哪里，data? props? computed? state? getter?
+      // 2. 数据格式 string? object? number? array?...
+      bannerList: []
+    }
+  },
   methods: {
     onChange (index) {
       // console.log('hello', index)
     }
   },
   created () {
-    // fetch('https://mhd.zhuishushenqi.com/comic_v2/getproad?apptype=8&appversion=1.0&channel=web-app&adgroupid=123').then(response => response.json()).then(res => {
-    //   console.log(res)
-    // })
-    fetch('http://localhost:8080/migu/lovev/miguMovie/data/seeFilmData.jsp', {
-      method: 'POST'
-    }).then(response => response.json()).then(res => {
-      console.log(res, 'helloworld')
+    getBanner().then(res => {
+      if (res.code === 200) {
+        // ok
+        this.bannerList = res.info
+      } else {
+        // 先调用一下丑陋的200，后面可以用一下vant组件库中的组件。
+        alert(res.code_msg)
+      }
+    }).catch(err => {
+      alert('网络异常，请稍后重试', err)
     })
   }
 }
