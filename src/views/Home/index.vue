@@ -12,7 +12,6 @@
         <div class="header-search"></div>
       </a>
     </header>
-    <br>
     <Swiper class = 'my-swiper' :autoplay="2000" @change="onChange">
       <SwiperItem>
         <img
@@ -49,6 +48,16 @@ export default {
     onChange (index) {
       // console.log('hello', index)
     }
+  },
+  created () {
+    // fetch('https://mhd.zhuishushenqi.com/comic_v2/getproad?apptype=8&appversion=1.0&channel=web-app&adgroupid=123').then(response => response.json()).then(res => {
+    //   console.log(res)
+    // })
+    fetch('http://localhost:8080/migu/lovev/miguMovie/data/seeFilmData.jsp', {
+      method: 'POST'
+    }).then(response => response.json()).then(res => {
+      console.log(res, 'helloworld')
+    })
   }
 }
 </script>
