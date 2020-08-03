@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container" ref = "swiper">
     <div class="swiper-wrapper">
       <!-- <div class="swiper-slide">Slide 1</div>
       <div class="swiper-slide">Slide 2</div>
@@ -29,9 +29,10 @@ export default {
     }
   },
   mounted () {
+    // console.log(this.$el); 这是使用ref标记使用this.$refs.swiper,或者使用this.$el 获取根元素都可以
     var that = this
     /* eslint-disable */
-    var mySwiper = new Swiper(".swiper-container", {
+    var mySwiper = new Swiper(this.$refs.swiper, {
       loop: this.loop, // 循环模式选项
       autoplay: this.autoplay ? {
         delay: this.autoplay,

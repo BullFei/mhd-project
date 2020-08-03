@@ -12,6 +12,7 @@
         <div class="header-search"></div>
       </a>
     </header>
+    <br>
     <Swiper class = 'my-swiper' :autoplay="2000" @change="onChange">
       <SwiperItem>
         <img
@@ -46,13 +47,17 @@ export default {
   },
   methods: {
     onChange (index) {
-      console.log('hello', index)
+      // console.log('hello', index)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+//引入共用的minxins: NaNscss;
+// @import "../../assets/styles/mixins.scss";
+// 使用@这个别名时，需要加一个~符号。但是现在不需要了
+@import "@/assets/styles/mixins.scss";
 .page-home {
   display: flex;
   flex-direction: column;
@@ -61,12 +66,14 @@ export default {
     width: 100%;;
   }
   .index-header {
+    @include border-bottom;
     display: flex;
     height: 44px;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
+    // border-bottom: 1px solid #e9e9e9;
     .user-btn {
       width: 25px;
       height: 25px;
