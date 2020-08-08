@@ -1,6 +1,7 @@
 // 专门处理 漫画相关的 接口请求
 // 引入封装好的 axios 的实例
 import request from '@/utils/request'
+import { format } from '../utils/apiHeader'
 /*
   获取轮播图
 */
@@ -8,7 +9,7 @@ export const getBanner = () => {
   // return 的 接口调用之后的，axios返回的 promise对象
   return request({
     url: '/api/comic_v2/getproad',
-    methods: 'GET',
+    method: 'GET',
     // 需要请求体参数，就提供 data
     // 需要查询字符串参数，就提供params
     params: {
@@ -24,12 +25,49 @@ export const getIndexRecomment = () => {
   // 获取首页的推荐数据
   return request({
     url: '/api/comic_v2/customerview',
-    methods: 'GET',
+    method: 'GET',
     params: {
       apptype: 8,
       appversion: '1.0',
       channel: 'web-app',
       viewtype: 1
     }
+  })
+}
+
+// 获取分类类型
+export const getproad = () => {
+  // https://mhd.zhuishushenqi.com/comic_v2/getproad?apptype=8&appversion=1.0&channel=web-app&adgroupid=125
+  // 获取首页的推荐数据
+  return request({
+    url: '/api/comic_v2/getproad',
+    method: 'GET',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app',
+      adgroupid: 125
+    }
+  })
+}
+
+// https://mhd.zhuishushenqi.com/comic_v2/comicsfilterlist_v2?apptype=8&appversion=1.0&channel=web-app
+// 获取分类数据
+
+export const getTypeList = (subject, pagenp = 1, pagesize = 20) => {
+  // 获取首页的推荐数据
+  return request({
+    url: '/api/comic_v2/comicsfilterlist_v2',
+    method: 'POST',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app'
+    },
+    data: format({
+      subject,
+      pagenp,
+      pagesize
+    })
   })
 }

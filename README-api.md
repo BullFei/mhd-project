@@ -142,3 +142,9 @@ $ npm install axios -D
 
 > 将要调用的接口按照模块去拆分成一个一个的js文件，然后统一放置在 src/api 目录下
 
+## 4. 分类页面数据加密处理
+
+[bcryptjs加密](https://www.npmjs.com/package/bcryptjs)
+
+[crypto-js加密](https://www.npmjs.com/package/crypto-js)
+

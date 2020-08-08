@@ -55,11 +55,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  filters: {
-    formatViews (value) {
-      return (value / Math.pow(10, 8)).toFixed(2) + '亿'
-    }
   }
 }
 </script>
