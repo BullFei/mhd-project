@@ -71,3 +71,38 @@ export const getTypeList = (subject, pagenp = 1, pagesize = 20) => {
     })
   })
 }
+
+// 获取排行榜数据
+export const getRankList = (ranktype, pageno = 1, pagesize = 20) => {
+  return request({
+    url: '/api/comic_v2/comicsrank',
+    method: 'POST',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app'
+    },
+    data: format({
+      ranktype,
+      pageno,
+      pagesize
+    })
+  })
+}
+
+export const getVIPList = () => {
+  return request({
+    url: '/api/comic_v2/comicsfilterlist_v2',
+    method: 'POST',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app'
+    },
+    data: format({
+      special: 892,
+      pageno: 1,
+      pagesize: 20
+    })
+  })
+}

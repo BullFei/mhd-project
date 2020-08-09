@@ -3,7 +3,7 @@
     <normal-header title = "分类"></normal-header>
     <header-type :types = "proad" @click = "onTypeChange"></header-type>
     <div class="classify-main">
-      <cartoon-list :comicsList = "comicsList"></cartoon-list>
+      <cartoon-list :comicsList = "cartoonList"></cartoon-list>
     </div>
   </div>
 </template>
@@ -26,6 +26,19 @@ export default {
     return {
       proad: [],
       comicsList: []
+    }
+  },
+  computed: {
+    cartoonList () {
+      return this.comicsList.map(item => {
+        return {
+          id: item.bigbook_id,
+          coverurl: item.coverurl,
+          name: item.bigbook_name,
+          author: item.bigbook_author,
+          view: item.bigbookview
+        }
+      })
     }
   },
   methods: {
