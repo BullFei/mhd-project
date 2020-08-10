@@ -136,3 +136,21 @@ export const searchIndex = (value) => {
     }
   })
 }
+
+// 搜索结果页面
+// https://mhd.zhuishushenqi.com/comic_v2/searchbookauthor?apptype=8&appversion=1.0&channel=web-app&name=%E9%B8%AD%E6%A2%A8%E5%8F%94%E4%B9%90%E5%93%88%E5%93%88&type=2&pageno=1&pagesize=100
+export const searchResult = (value) => {
+  return request({
+    url: '/api/comic_v2/searchbookauthor',
+    method: 'GET',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app',
+      name: value,
+      type: 2,
+      pageno: 1,
+      pagesize: 100
+    }
+  })
+}
