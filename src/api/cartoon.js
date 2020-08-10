@@ -106,3 +106,33 @@ export const getVIPList = () => {
     })
   })
 }
+
+// 热门搜索数据
+// https://mhd.zhuishushenqi.com/comic/hotsearch?apptype=8&appversion=1.0&channel=web-app&appType=8
+export const getHotSearch = () => {
+  return request({
+    url: '/api/comic/hotsearch',
+    method: 'GET',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app'
+    }
+  })
+}
+
+// 搜索关键字操作
+// https://mhd.zhuishushenqi.com/comic_v2/searchindex?apptype=8&appversion=1.0&channel=web-app&name=1&type=2
+export const searchIndex = (value) => {
+  return request({
+    url: '/api/comic_v2/searchindex',
+    method: 'GET',
+    params: {
+      apptype: 8,
+      appversion: '1.0',
+      channel: 'web-app',
+      name: value,
+      type: 2
+    }
+  })
+}
