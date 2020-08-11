@@ -28,7 +28,7 @@
         v-for="(childItem, childIndex) in info.comicslist"
         :key="childItem.bigbook_id"
       >
-        <img class="item-pic" :src="JSON.parse(childItem.extension).scfk344_202" />
+        <img class="item-pic" :src="`${childItem.bigcoverurl || childItem.coverurl}`" />
         <div class="ranking-group">
           <div :class="`item-ranking item-ranking-${childIndex + 1}`"></div>
         </div>

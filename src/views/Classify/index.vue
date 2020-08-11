@@ -44,27 +44,13 @@ export default {
   methods: {
     getproad () {
       return getproad().then(res => {
-        if (res.code === 200) {
-          this.proad = res.info
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(err => {
-        console.log(err)
-        alert('网络异常，请稍后重试')
+        this.proad = res.info
       })
     },
     getTypeList (subject) {
       getTypeList(subject).then(res => {
-        if (res.code === 200) {
-          const info = JSON.parse(unformat(res.info))
-          this.comicsList = info.comicsList
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(err => {
-        console.log(err)
-        alert('网络异常，请稍后重试')
+        const info = JSON.parse(unformat(res.info))
+        this.comicsList = info.comicsList
       })
     },
     onTypeChange (payload) {

@@ -41,15 +41,7 @@ export default {
   methods: {
     searchResult (name) {
       searchResult(name).then(res => {
-        if (res.code === 200) {
-          // console.log(res)
-          this.list = res.info
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(error => {
-        console.log(error)
-        alert('网络异常，请稍后重试')
+        this.list = res.info
       })
     }
   },

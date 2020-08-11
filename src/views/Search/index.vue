@@ -88,14 +88,7 @@ export default {
   methods: {
     getHotSearch () {
       getHotSearch().then(res => {
-        if (res.code === 200) {
-          this.hotWordsList = res.info.hotWordsList
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(error => {
-        console.log(error)
-        alert('网络异常，请稍后重试')
+        this.hotWordsList = res.info.hotWordsList
       })
     },
     // 保存最近搜索
@@ -141,15 +134,7 @@ export default {
         return
       }
       searchIndex(value).then(res => {
-        if (res.code === 200) {
-          // console.log(res)
-          this.searchIndexList = res.info
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(error => {
-        console.log(error)
-        alert('网络异常，请稍后重试')
+        this.searchIndexList = res.info
       })
     },
     deleteSearch () {

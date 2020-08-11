@@ -40,16 +40,8 @@ export default {
   methods: {
     getVIPList () {
       getVIPList().then(res => {
-        if (res.code === 200) {
-          // 解码与解析
-          const info = JSON.parse(unformat(res.info))
-          this.VIPList = info.comicsList
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(err => {
-        console.log(err)
-        alert('网络异常，请稍后重试')
+        const info = JSON.parse(unformat(res.info))
+        this.VIPList = info.comicsList
       })
     }
   },

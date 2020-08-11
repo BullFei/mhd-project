@@ -45,29 +45,13 @@ export default {
     getBanner () {
       getBanner()
         .then((res) => {
-          if (res.code === 200) {
-          // ok
-            this.bannerList = res.info
-          } else {
-          // 先调用一下丑陋的200，后面可以用一下vant组件库中的组件。
-            alert(res.code_msg)
-          }
-        })
-        .catch((err) => {
-          alert('网络异常，请稍后重试', err)
+          this.bannerList = res.info
         })
     },
     getIndexRecomment () {
       getIndexRecomment()
         .then(res => {
-          if (res.code === 200) {
-            this.recommendList = res.info
-          } else {
-            alert(res.code_msg)
-          }
-        })
-        .catch((err) => {
-          alert('网络异常，请稍后重试', err)
+          this.recommendList = res.info
         })
     },
     getImg (str) {

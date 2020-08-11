@@ -52,15 +52,8 @@ export default {
   methods: {
     getRankList (ranktype) {
       getRankList(ranktype).then(res => {
-        if (res.code === 200) {
-          const info = JSON.parse(unformat(res.info))
-          this.ranklist = info.ranklist
-        } else {
-          alert(res.code_msg)
-        }
-      }).catch(err => {
-        console.log(err)
-        alert('网络异常，请稍后重试')
+        const info = JSON.parse(unformat(res.info))
+        this.ranklist = info.ranklist
       })
     },
     onTypeChange (payload) {

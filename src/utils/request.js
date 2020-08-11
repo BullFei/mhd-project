@@ -1,5 +1,6 @@
 // 引入axios
 import axios from 'axios'
+import { Notify } from 'vant'
 
 // 创建一个axios的实例对象  这样可以不污染axios本身
 const instance = axios.create({
@@ -17,6 +18,8 @@ instance.interceptors.request.use(
     return config
   },
   function (error) {
+    console.log(error)
+    Notify({ type: 'danger', message: '网络异常，请稍后重试' })
     // 对请求错误做些什么
     return Promise.reject(error)
   }
@@ -25,6 +28,11 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
   response => {
+    var res = response.data
+    if (res.code !== 200) {
+      Notify({ type: 'danger', message: res.code_msg })
+      return Promise.reject(new Error(res.code_msg))
+    }
     // 对响应数据做点什么
     return response.data
   },
