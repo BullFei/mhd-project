@@ -24,6 +24,7 @@
     "autoprefixer": "^9.8.5",
     "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
+    "better-scroll": "^1.15.2",
     "crypto-js": "^4.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",

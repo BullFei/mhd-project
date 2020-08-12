@@ -3,11 +3,13 @@
     <normal-header :title = "`当前城市-${curCityName}`" :showRight = "false"></normal-header>
     <div class = 'city-main'>
       <div class = 'left' ref = 'scrollLeft'>
-        <div class = 'city-index-section' :ref = "`section-${item.py}`" v-for = "item in cityList" :key = "item.py">
-          <p>{{item.py}}</p>
-          <ul>
-            <li v-for = "city in item.list" :key = "city.cityId" @click = "handleClick(city)">{{city.name}}</li>
-          </ul>
+        <div>
+          <div class = 'city-index-section' :ref = "`section-${item.py}`" v-for = "item in cityList" :key = "item.py">
+            <p>{{item.py}}</p>
+            <ul>
+              <li v-for = "city in item.list" :key = "city.cityId" @click = "handleClick(city)">{{city.name}}</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class = 'right'>
@@ -22,6 +24,7 @@
 <script>
 import NormalHeader from '@/components/NormalHeader'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
+import BScroll from 'better-scroll'
 export default {
   name: 'City',
   components: {
@@ -48,11 +51,19 @@ export default {
       // 计算这个元素距离 左侧顶部的距离
       const offsetTop = targetEl.offsetTop
       // 修改左侧的值
-      this.$refs.scrollLeft.scrollTop = offsetTop - 40
+      this.bscroll.scrollTo(0, -offsetTop)
     }
   },
   created () {
     this.GET_CITIES()
+  },
+  mounted () {
+    // 传入一个dom对象
+    /* eslint-disable */
+    this.bscroll = new BScroll(this.$refs.scrollLeft, {
+      click: true
+    })
+    /* eslint-enable */
   }
 }
 </script>
@@ -71,7 +82,6 @@ export default {
   .left{
     flex: 1;
     height: 100%;
-    overflow-y: auto;
     .city-index-section{
       @include border-bottom;
       padding-left: 15px;

@@ -51,8 +51,6 @@ const router = new VueRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  console.log(store)
-  console.log(to, from)
   // 判断当前是否选择了城市，根据sessionstorage 或者store去判断。
   if (!store.state.city.curCity && to.path !== '/city') {
     // 先去城市列表页面
