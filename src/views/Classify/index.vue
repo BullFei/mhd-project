@@ -1,6 +1,6 @@
 <template>
   <div class="page-classify">
-    <p>当前选择的城市是：{{curCityName}}</p>
+    <router-link to = '/city'>当前选择的城市是：{{curCityName}}</router-link>
     <normal-header title = "分类"></normal-header>
     <header-type :types = "proad" @click = "onTypeChange"></header-type>
     <div class="classify-main">

@@ -1,6 +1,6 @@
 <template>
   <div class="page-home">
-    <p>当前选择的城市是：{{ curCityName }}</p>
+    <router-link to = '/city'>当前选择的城市是：{{ curCityName }}</router-link>
     <index-head></index-head>
     <div class="index-main">
       <swiper class="my-swiper" :autoplay="2000" @change="onChange" v-if="bannerList.length > 0">
@@ -22,6 +22,7 @@ import indexRecommend from './components/indexRecommend'
 import indexHead from './components/indexHead'
 import { mapGetters } from 'vuex'
 
+// 仓库的数据不是永久存储，页面刷新以后就不存在了
 export default {
   name: 'Home',
   components: {

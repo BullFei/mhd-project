@@ -6,7 +6,7 @@
         <div class = 'city-index-section' :ref = "`section-${item.py}`" v-for = "item in cityList" :key = "item.py">
           <p>{{item.py}}</p>
           <ul>
-            <li v-for = "city in item.list" :key = "city.cityId" @click = "SET_CURCITY(city)">{{city.name}}</li>
+            <li v-for = "city in item.list" :key = "city.cityId" @click = "handleClick(city)">{{city.name}}</li>
           </ul>
         </div>
       </div>
@@ -21,56 +21,23 @@
 
 <script>
 import NormalHeader from '@/components/NormalHeader'
-import { getCityList } from '@/api/city'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'City',
   components: {
     NormalHeader
   },
-  data () {
-    return {
-      cities: []
-    }
-  },
   computed: {
-    ...mapGetters('city', ['curCityName']),
-    cityList () {
-      const result = []
-      this.cities.forEach(item => {
-        // 获取当前城市的首字母
-        const py = item.pinyin[0].toUpperCase()
-        var index = result.findIndex(item => item.py === py)
-        if (index > -1) {
-          result[index].list.push(item)
-        } else {
-          result.push({
-            py,
-            list: [item]
-          })
-        }
-      })
-      result.sort((a, b) => a.py.charCodeAt() - b.py.charCodeAt())
-      return result
-    },
-    indexs () {
-      return this.cityList.map(item => item.py)
-    }
+    ...mapGetters('city', ['curCityName', 'cityList', 'indexs'])
   },
   methods: {
     ...mapMutations('city', ['SET_CURCITY']),
-    getCityList () {
-      getCityList().then(res => {
-        const data = res.data
-        if (data.status === 0) {
-          this.cities = data.data.cities
-        } else {
-          alert(data.msg)
-        }
-      }).catch(err => {
-        console.log(err)
-        alert('网络异常，请稍后重试')
-      })
+    ...mapActions('city', ['GET_CITIES']),
+    handleClick (py) {
+      this.SET_CURCITY(py)
+      // 2、回到之前的页面
+      const redirect = this.$route.query.redirect || '/'
+      this.$router.replace(redirect)
     },
     handleIndex (py) {
       // ref 标记时，如果标记在 v-for 上，那么得到的是一个数组
@@ -85,7 +52,7 @@ export default {
     }
   },
   created () {
-    this.getCityList()
+    this.GET_CITIES()
   }
 }
 </script>
