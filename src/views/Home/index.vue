@@ -1,5 +1,6 @@
 <template>
   <div class="page-home">
+    <p>当前选择的城市是：{{ curCityName }}</p>
     <index-head></index-head>
     <div class="index-main">
       <swiper class="my-swiper" :autoplay="2000" @change="onChange" v-if="bannerList.length > 0">
@@ -19,6 +20,7 @@ import { getBanner, getIndexRecomment } from '@/api/cartoon'
 import indexNav from './components/indexNav'
 import indexRecommend from './components/indexRecommend'
 import indexHead from './components/indexHead'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
@@ -28,6 +30,9 @@ export default {
     indexNav,
     indexRecommend,
     indexHead
+  },
+  computed: {
+    ...mapGetters('city', ['curCityName'])
   },
   data () {
     return {

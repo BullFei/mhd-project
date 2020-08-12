@@ -13,6 +13,7 @@ import Register from '../views/Register'
 import Search from '../views/Search'
 import Vip from '../views/Vip'
 import SearchResult from '../views/SearchResult'
+import City from '../views/City'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,7 @@ const router = new VueRouter({
   routes: [
     { path: '/home', component: Home },
     { path: '/classify', component: Classify },
+    { path: '/city', component: City },
     {
       path: '/hello',
       component: Hello,

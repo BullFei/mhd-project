@@ -1,5 +1,6 @@
 <template>
   <div class="page-classify">
+    <p>当前选择的城市是：{{curCityName}}</p>
     <normal-header title = "分类"></normal-header>
     <header-type :types = "proad" @click = "onTypeChange"></header-type>
     <div class="classify-main">
@@ -14,6 +15,7 @@ import HeaderType from '@/components/HeaderType'
 import CartoonList from '@/components/CartoonList'
 import { getproad, getTypeList } from '@/api/cartoon'
 import { unformat } from '@/utils/apiHeader'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Classify',
@@ -29,6 +31,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('city', ['curCityName']),
     cartoonList () {
       return this.comicsList.map(item => {
         return {
