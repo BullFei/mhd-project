@@ -3,21 +3,21 @@
     <div class="recommend-divide"></div>
     <div class="recommend-title">
       <div class="title-group">
-        <img class="title-icon" :src="info.icon" />
+        <img class="title-icon" v-lazy="info.icon" />
         <span class="title-text font-36">{{info.name}}</span>
       </div>
       <span class="title-more font-24">更多 &gt;</span>
     </div>
     <div v-if="info.comicsviewtype === 1" class="recommend-type-1">
       <div class="item" v-for="childItem in info.comicslist" :key="childItem.bigbook_id">
-        <img class="item-pic" :src="JSON.parse(childItem.extension).xsyzfx" />
+        <img class="item-pic" v-lazy="JSON.parse(childItem.extension).xsyzfx" />
         <p class="item-name font-28">{{childItem.bigbook_name}}</p>
         <p class="item-text font-24">{{JSON.parse(childItem.extension).recommendwords}}</p>
       </div>
     </div>
     <div v-if="info.comicsviewtype === 5" class="recommend-type-5">
       <div class="item" v-for="childItem in info.comicslist" :key="childItem.bigbook_id">
-        <img class="item-pic" :src="childItem.coverurl" />
+        <img class="item-pic" v-lazy="childItem.coverurl" />
         <p class="item-name font-28">{{childItem.bigbook_name}}</p>
         <p class="item-text font-24">{{childItem.key_name}}</p>
       </div>
@@ -28,7 +28,7 @@
         v-for="(childItem, childIndex) in info.comicslist"
         :key="childItem.bigbook_id"
       >
-        <img class="item-pic" :src="`${childItem.bigcoverurl || childItem.coverurl}`" />
+        <img class="item-pic" v-lazy="`${childItem.bigcoverurl || childItem.coverurl}`" />
         <div class="ranking-group">
           <div :class="`item-ranking item-ranking-${childIndex + 1}`"></div>
         </div>
