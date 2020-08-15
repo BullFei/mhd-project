@@ -1,4 +1,9 @@
 <template>
+<!-- <transition
+  appear
+  enter-active-class="animate__animated animate__slideInDown"
+  leave-active-class="animate__animated animate__slideOutUp"
+> -->
   <div class="page-ranking">
     <normal-header title = '排行榜'></normal-header>
     <header-type :types = "types" @click = "onTypeChange"></header-type>
@@ -6,6 +11,7 @@
       <cartoon-list :comicsList = "cartoonList" :isRanking = "true"></cartoon-list>
     </div>
   </div>
+<!-- </transition> -->
 </template>
 
 <script>
@@ -67,11 +73,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/styles/mixins.scss";
 .page-ranking {
   display: flex;
   flex-direction: column;
   height: 100%;
-
+  @include backgroundCustom;
   .ranking-main {
     flex: 1;
     overflow-y: auto;

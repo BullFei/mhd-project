@@ -1,4 +1,10 @@
 <template>
+  <!-- appear 第一次进入页面也要进行入场动画 -->
+  <!-- <transition
+    appear
+    enter-active-class="animate__animated animate__slideInRight"
+    leave-active-class="animate__animated animate__slideOutRight"
+  > -->
   <div class="page-classify">
     <router-link to = '/city'>当前选择的城市是：{{curCityName}}</router-link>
     <normal-header title = "分类"></normal-header>
@@ -7,6 +13,7 @@
       <cartoon-list :comicsList = "cartoonList"></cartoon-list>
     </div>
   </div>
+  <!-- </transition> -->
 </template>
 
 <script>
@@ -70,11 +77,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/styles/mixins.scss";
 .page-classify {
+  z-index: 22;
   display: flex;
   flex-direction: column;
   height: 100%;
-
+  @include backgroundCustom;
   .classify-main {
     flex: 1;
     overflow-y: auto;

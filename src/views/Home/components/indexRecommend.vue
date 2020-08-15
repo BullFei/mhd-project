@@ -10,9 +10,9 @@
     </div>
     <div v-if="info.comicsviewtype === 1" class="recommend-type-1">
       <div class="item" v-for="childItem in info.comicslist" :key="childItem.bigbook_id">
-        <img class="item-pic" v-lazy="JSON.parse(childItem.extension).xsyzfx" />
+        <img class="item-pic" v-lazy="childItem.coverurl" />
         <p class="item-name font-28">{{childItem.bigbook_name}}</p>
-        <p class="item-text font-24">{{JSON.parse(childItem.extension).recommendwords}}</p>
+        <p class="item-text font-24">{{childItem.key_name}}</p>
       </div>
     </div>
     <div v-if="info.comicsviewtype === 5" class="recommend-type-5">

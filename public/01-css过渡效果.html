@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box{
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+      /* 离开时，让透明度从1变成0 */
+      .v-leave{
+        opacity: 1;
+      }
+      .v-leave-to{
+        opacity: 0;
+      }
+      .v-leave-active{
+        transition: all 1s;
+      }
+      /* 显示时，让透明度从0变成1 要设置初始状态 */
+      .v-enter{
+        opacity: 0;
+      }
+      .v-enter-active{
+        transition: all 5s;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!--
+      transition 内置组件
+      实现 vue 中动画过渡的一些效果
+      使用方式：
+        1. 那个元素需要有 进入/离开 的效果
+        2. 给这个元素包裹一个transition组件
+        3. 这时 这个元素在 进入/离开  会自动携带一些css类
+        4. 给这些css类做一些样式控制即可
+      自动添加的类名有：
+        v-enter
+        v-enter-to
+        v-enter-active
+        v-leave
+        v-leave-to
+        v-leave-active
+     -->
+      <button @click="isShow=!isShow">点击我显示和隐藏</button>
+      <transition>
+        <div class="box" v-if="isShow"></div>
+      </transition>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        isShow: true,
+      },
+    });
+  </script>
+</html>

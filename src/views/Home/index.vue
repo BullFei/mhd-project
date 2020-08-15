@@ -88,6 +88,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  @include backgroundCustom;
+  z-index: 11 !important;
   .my-swiper img {
     width: 100%;
   }
